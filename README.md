@@ -1,25 +1,41 @@
+
 # Asteroid Diameter Prediction: EDA
 
 _I also recommend reading the notebook on Kaggle._
 
-<a href="https://www.kaggle.com/code/blulypsee/asteroid-diameter-prediction-eda/notebook"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle" /></a> 
+<a href="https://www.kaggle.com/code/blulypsee/asteroid-diameter-prediction-mlp-catboost-lgbm/notebook"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open in Kaggle" /></a> 
+
 
 ## SUMMARY
 
-* Determined that the dataset consists of 92% of asteroids of a specific class, and thus is highly imbalanced and has features with more than 80% of data missing.
-* Found that 7% of asteroids have poorly determined orbits, so some of the characteristics of these asteroids may be inaccurate, and these cases should be treated with caution.
-* Improved data quality by identifying outliers and missing values in data, which were then processed using different methods such as imputation and removal.
-* Conducted exploratory data analysis on a cleaned dataset with 137 thousand asteroid observations, which consisted of various features such as absolute magnitude, semi-major axis, albedo, and diameter of the asteroids.
-* Examined and visualized distributions, correlations of the asteroids' observable characteristics and relationships between them, which allowed for a better understanding of the dataset and helped to inform decisions on feature selection and preprocessing for the predictive model that can be crucial for understanding asteroid's potential impact on Earth and for planning future space missions.
-* The analysis can contribute to the development of an accurate and robust model for predicting asteroid diameter, which is crucial for identifying potentially hazardous asteroids, and for the models that actually classify hazardous and non-hazardous asteroids.
+* Developed an innovative approximate diameter feature in the MLP model, resulting in a remarkable MSE reduction of 46.9% and a substantial R2 improvement of 2.1%, enhancing model accuracy and predictive power.
+* Demonstrated expertise in building and fine-tuning a diverse range of machine learning models, including MLP, CatBoost, and LightGBM, leveraging advanced techniques such as scaling, one-hot encoding, grid search, and cross-validation to optimize model performance.
+* Identified the MLP model as the top-performing model, achieving an MSE of 1.893 and an R2 score of 0.978 on the test set, surpassing other models.
+* Revealed crucial patterns and correlations in a highly imbalanced dataset of 137,000 asteroid observations, providing valuable insights for understanding asteroid behavior, informing the assessment of the potential impact of asteroids on Earth, and planning future space missions to study these objects,
+* Discovered critical dataset characteristics, including a dominant class comprising 92% of asteroids, and identified 7% of asteroids with poorly determined orbits, enabling strategic decision-making for accurate and reliable predictions.
+* Improved data quality by identifying outliers and missing values in data, which were then processed using appropriate methods such as imputation and removal.
+* Constructed robust models for accurate asteroid diameter prediction, crucial for identifying potentially hazardous asteroids and enhancing classification models for distinguishing between hazardous and non-hazardous asteroids.
+
+## RESULTS
+
+The project aimed to assess the performance of three models for predicting asteroid diameters: MLP, CatBoost, and LGBM. The evaluation was based on two metrics: mean squared error (MSE) and R2 score.
+
+![model comparison](https://raw.githubusercontent.com/Sofxley/asteroid-diameter-prediction/main/images/model_comparison.png)
+
+The MLP model proved to be the most suitable and accurate model for predicting asteroid diameters in this project. Although the MLP model showed the best performance, __all three__ models achieved __satisfactory results__ in predicting asteroid diameters, with the __MLP model being the most accurate among them, having achieved an MSE of 1.893 and the highest R2 score of 0.978.__ 
+
+The MSE scores for all models ranged from approximately 1.893 to 5.632, indicating that the average deviation of the predicted diameters from the actual diameters was within a range from 1.375 to 2.373 kilometers for distinct models. The R2 scores, on the other hand, ranged from 0.933 to 0.978, indicating the percentage of the variance in the target variable (diameters) that was explained by the models.
+
+![](https://raw.githubusercontent.com/Sofxley/asteroid-diameter-prediction/main/images/test_results.png)
+
 
 ## Table of Contents
 1. [Project At A Glance](#Project_At_A_Glance)
 2. [Introduction](#intro)
 3. [Problem Statement and Motivation](#prob)
 4. [EDA](#EDA)
-5. Feature Engineering and Data Preprocessing (yet to come)
-6. Building Neural Networks and Making Predictions  (yet to come)
+5. [Feature Engineering and Data Preprocessing](#ENG_PROC)
+6. [Building and Fine-Tuning the Models](#models)
 
 <a id="Project_At_A_Glance"></a>
 ## Project At A Glance
@@ -51,14 +67,14 @@ The project involves analyzing the set of observational data published by JPL’
 
 As someone who is truly fascinated by astronomy and data mining, I am looking forward to working on the project that will help me learn captivating facts about the field I take interest in, not only from the textbook, but from the real astronomical data, and also enhance my skills both through careful attention to the details of data and machine learning, when it comes down to the actual use of the knowledge gained during the analysis.
 
-__The current project is still in progress, but the outline of the final project will resemble this.__
+__The outline of the project looks like this:__
 
-To begin with, I will be exploring the dataset in search of interesting relationships between the features and explaining the relationships if possible. That is what I have done so far in the _Exploring the Data_ section. Then I will be preparing the data for training the diameter prediction models further in the project. This step comprises feature engineering, encoding the categorical features, scaling the data, possibly, removing the outliers, etc. After having done that, I am planning to focus more on building and fine-tuning the neural networks using TensorFlow's Sequential/Functional/Subclassing APIs. There is also a chance that I would give Light GBM or CatBoost a try so that later I will be able to compare these different models and determine which one is the best for the task at hand.
+To begin with, I will be exploring the dataset in search of interesting relationships between the features and explaining the relationships if possible. That is what I will be doing in the _Exploring the Data_ section. Then I will be preparing the data for training the diameter prediction models further in the project. This step comprises feature engineering, encoding the categorical features, and scaling the data. After having done that, the primary focus will be on constructing and fine-tuning three models: MLP neural network, CatBoost, and Light GBM. By exploring and optimizing these models, I aim to identify the most suitable one for our specific task - the prediction of asteroid diameter. Through a comparative analysis of their performance, you will see me make an informed decision about which model yields the best results.
 
 
 <a id="EDA"></a>
 ## EDA
-_Please note that if one is willing to see more of the takeaways from the EDA, then I suggest reading the whole notebook, which can be found either on [Github](https://github.com/Sofxley/asteroid-diameter-prediction/blob/main/asteroid_diameter_prediction.ipynb) or [Kaggle](https://www.kaggle.com/code/blulypsee/asteroid-diameter-prediction-eda/notebook)._
+_Please note that if one is willing to see more of the takeaways from the EDA, then I suggest reading the whole notebook, which can be found either on [Github](https://github.com/Sofxley/asteroid-diameter-prediction/blob/main/asteroid_diameter_prediction.ipynb) or [Kaggle](https://www.kaggle.com/code/blulypsee/asteroid-diameter-prediction-mlp-catboost-lgbm)._
 
 Here I present some of the highlights from the EDA. 	
 
@@ -131,3 +147,36 @@ __Bivariate Distributions__
 * The last figure shows the probability of two given variables occurring. For example, we see that most of the asteroids have inclinations below 15. deg and these occurrences spread over all values of LAN and argument of perihelion.
 
 <img src="https://raw.githubusercontent.com/Sofxley/asteroid-diameter-prediction/main/images/bivariate_distributions.png" align="right"/>
+
+
+<a id="ENG_PROC"></a>
+## Feature Engineering and Data Preprocessing
+
+During the feature engineering and data preprocessing phase, I employed several techniques to optimize the dataset for modeling and analysis. Firstly, I performed feature engineering by creating a new feature called `approx_diameter` based on existing features. The introduction of the new feature, `approx_diameter`, played a __crucial role in improving the performance of the MLP model.__ This feature was engineered to capture an approximate diameter value for each asteroid, providing additional information that was not explicitly available in the original dataset.
+
+By incorporating this new feature, the __MLP model was able to leverage the relationship between the existing features and the target variable more effectively.__ The `approx_diameter` feature likely captured some hidden patterns or correlations that were not apparent in the other features alone. As a result, the MLP model, which is known for its ability to learn complex relationships in data, was able to exploit the information provided by the `approx_diameter` feature, leading to improved predictions and higher accuracy. The inclusion of this feature might have introduced new insights and nuances into the modeling process, __allowing the MLP model to outperform the other models.__
+
+This emphasized that by carefully engineering relevant and informative features, we can enhance the performance of our models and uncover hidden patterns in the data. __In this case, the `approx_diameter` feature proved to be a valuable addition, contributing to the success of the MLP model as the best-performing model in the project.__
+
+Next, I tackled the categorical features in the dataset by applying one-hot encoding. This technique transformed categorical variables into a binary format, allowing the models to process them effectively. The resulting encoded features provided valuable information for predicting the target variable.
+
+To ensure a fair evaluation of the models' performance, I split the dataset into training, validation, and test sets. The training set was used to train the models, the validation set helped in hyperparameter tuning and model selection, and the test set provided an independent evaluation of the final models' performance.
+
+Furthermore, I applied data scaling techniques, specifically standardization, to normalize the numerical features. This step ensured that all features were on a similar scale, preventing any particular feature from dominating the model's learning process.
+
+Through meticulous feature engineering, proper encoding of categorical features, careful data splitting, and appropriate data scaling, I aimed to create a dataset that was well-suited for modeling and analysis. These steps were crucial in optimizing the data and ensuring that the models could effectively learn patterns and make accurate predictions.
+
+<a id="models"></a>
+## Building and Fine-Tuning the Models
+
+![](https://raw.githubusercontent.com/Sofxley/asteroid-diameter-prediction/main/images/test_results.png)
+
+In this section, I trained and compared three different models: MLP, CatBoost, and LightGBM. The models were trained on both the entire dataset and a reduced dataset without the `approx_diameter` feature and further fine-tuned to improve their performance using the validation set. The performance of the models was evaluated using metrics such as MSE and R2 score.
+
+Initially, training the models on the entire dataset showed that the CatBoost model with the `approx_diameter` feature performed slightly better, while the MLP model also demonstrated competitive performance. Surprisingly, when training the models on the reduced dataset without the `approx_diameter` feature, the CatBoost model still performed well and achieved comparable results to the models trained on the entire dataset and was better than any other result so far. This suggests that the CatBoost model was able to capture the important patterns and relationships within the dataset, with or without the engineered feature.
+
+To further optimize the models, I conducted fine-tuning, adjusting the hyperparameters to improve their performance. The fine-tuned models, particularly the LightGBM model, exhibited improved results with reduced MSE and higher R2 scores, indicating enhanced accuracy and predictive power.
+
+To sum up, the comparison of the models highlighted the effectiveness of feature engineering and fine-tuning in improving model performance. The MLP model showcased the importance of the `approx_diameter` feature, which significantly enhanced its predictions on the test set. Meanwhile, the CatBoost and LightGBM models performed well on both the entire and reduced validation datasets, demonstrating their robustness and ability to capture patterns in unseen data. Despite CatBoost leading on the validation set, the MLP model emerged as the top-performing model on the test set, demonstrating its superior predictive power.
+
+![](https://raw.githubusercontent.com/Sofxley/asteroid-diameter-prediction/main/images/test_set_preds_MLP.png)
