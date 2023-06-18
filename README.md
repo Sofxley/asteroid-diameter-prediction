@@ -42,7 +42,7 @@ The MSE scores for all models ranged from approximately 1.893 to 5.632, indicati
 
 __Python Version__: 3.7.12
 
-__Packages__: numpy, pandas, matplotlib, seaborn, sklearn.
+__Packages__: numpy, pandas, matplotlib, seaborn, sklearn, tensorflow, lightgbm, catboost.
 
 <a id="intro"></a>
 ## Introduction
